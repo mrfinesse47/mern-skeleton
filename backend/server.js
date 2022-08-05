@@ -1,8 +1,13 @@
 const express = require('express');
+const colors = require('colors');
 const dotenv = require('dotenv').config();
 const port = process.env.PORT || 5001;
 
+const connectDB = require('./config/db');
 const { errorHandler } = require('./middleware/errorMiddleware');
+
+//connect to db -- not connecting?? check IP on mongodb atlas or user credentials
+connectDB();
 
 const app = express();
 
