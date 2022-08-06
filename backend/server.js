@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false })); //to decode body - x-www-form-
 // able to recieve req.body.
 
 app.use('/api/goals', require('../backend/routes/goalRoutes'));
+app.use('/api/users', require('../backend/routes/userRoutes'));
 
 app.use(errorHandler);
 //your custom error handler should come last
