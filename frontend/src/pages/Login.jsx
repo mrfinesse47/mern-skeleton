@@ -14,8 +14,9 @@ const Login = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const onSumbit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
+    console.log('hi');
   };
 
   return (
@@ -28,7 +29,7 @@ const Login = () => {
       </section>
 
       <section className='form'>
-        <form onSumbit={onSumbit}>
+        <form onSubmit={onSubmit}>
           <div className='form-group'>
             <input
               type='email'
