@@ -33,9 +33,19 @@ const Header = () => {
           <li>
             {/* decided to not have a logout page */}
             <button
-              className='invisible-button'
+              className='btn'
               onClick={() => {
                 dispatch(logout());
+
+                toast.success('Successful Log Out!', {
+                  position: 'top-right',
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
                 navigate('/login');
               }}
             >

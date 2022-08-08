@@ -4,7 +4,7 @@ import { FaUser } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { register, reset } from '../features/auth/authSlice';
+import { register, acknowledgeError } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
 
 const Register = () => {
@@ -25,9 +25,13 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+      toast.error(message, {
+        onClose: () => {
+          dispatch(acknowledgeError());
+        },
+      });
     }
-    if (isSuccess || user) {
+    if (user) {
       navigate('/');
     }
     // dispatch(reset());

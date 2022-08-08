@@ -57,6 +57,9 @@ export const authSlice = createSlice({
       state.isError = false;
       state.message = '';
     },
+    acknowledgeError: (state) => {
+      state.isError = false;
+    },
   },
   //watch the redux dev tools and this will make more sense
   //the thunkAPI.rejectWithValue will goto register or login rejected
@@ -68,11 +71,13 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.isError = false;
         state.user = action.payload;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
+        state.isSuccess = false;
         state.message = action.payload;
         state.user = null;
       })
@@ -82,6 +87,7 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.isError = false;
         state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
@@ -93,9 +99,10 @@ export const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
         state.isLoading = false;
+        state.isError = false;
       });
   },
 });
 
-export const { reset } = authSlice.actions;
+export const { reset, acknowledgeError } = authSlice.actions;
 export default authSlice.reducer;
