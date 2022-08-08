@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { createGoal } from '../features/goals/goalsSlice';
+import { createGoal } from '../features/goals/goalsSlice';
 
 const GoalForm = () => {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
   const onSubmit = (e) => {
     e.preventDefault();
-    // dispatch(createGoal(text));
+    dispatch(createGoal({ text }));
     setText('');
   };
   return (
