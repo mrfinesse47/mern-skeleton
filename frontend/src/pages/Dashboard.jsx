@@ -1,17 +1,32 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GoalForm from '../components/GoalForm';
+import Spinner from '../components/Spinner';
+import { getGoals, reset } from '../features/goals/goalsSlice';
 
 const Dashboard = () => {
-  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+  const { goals, isLoading, isError, message } = useSelector(
+    (state) => state.goals
+  );
+
   useEffect(() => {
+    if (isError) {
+      alert(message);
+    }
     if (!user) {
       navigate('/login');
     }
-  }, [user]);
+    dispatch(getGoals());
+    return () => {
+      dispatch(reset());
+    };
+  }, []);
   return (
     <>
       <section className='heading'>
