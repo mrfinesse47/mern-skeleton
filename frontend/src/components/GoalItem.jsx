@@ -1,6 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteGoal } from '../features/goals/goalsSlice';
 
 const GoalItem = ({ goal }) => {
+  const dispatch = useDispatch();
   return (
     <div className='goal'>
       <div>{new Date(goal.createdAt).toLocaleString('en-us')}</div>
@@ -8,7 +11,7 @@ const GoalItem = ({ goal }) => {
       <button
         className='close'
         onClick={() => {
-          console.log('clicked');
+          dispatch(deleteGoal(goal._id));
         }}
       >
         X
