@@ -26,7 +26,10 @@ const Dashboard = () => {
     return () => {
       dispatch(reset());
     };
-  }, []);
+  }, [isError, message, user, dispatch, navigate]);
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <>
       <section className='heading'>
