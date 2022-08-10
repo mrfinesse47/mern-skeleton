@@ -41,9 +41,9 @@ const Dashboard = () => {
       <section className='content'>
         {goals.length > 0 ? (
           <div className='goals'>
-            {goals.map((goal) => (
-              <GoalItem key={goal._id} goal={goal} />
-            ))}
+            {goals.map((goal) => {
+              return <GoalItem key={goal._id} goal={goal} />;
+            })}
           </div>
         ) : (
           <h3>you have not set any goals</h3>
